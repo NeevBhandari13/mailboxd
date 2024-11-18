@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option go_package = "moviesapp.com/grpc/protos";
+
+package movies;
+
+service Movie {
+  rpc GetMovies (Empty) returns (stream MovieInfo);
+  rpc GetMovie (Id) returns (MovieInfo);
+  rpc CreateMovie (MovieInfo) returns (Id);
+  rpc UpdateMovie (MovieInfo) returns (MovieInfo);
+  rpc DeleteMovie (Id) returns (MovieInfo);
+}
+
+message Empty {}
+
+message MovieInfo {
+  string id = 1;
+  string title = 2;
+  Genre genre = 3;
+  Director director = 4;
+}
+
+enum Genre {
+  ACTION = 0;
+  COMEDY = 1;
+  ROM_COM = 2;
+  SCI_FI = 3;
+}
+
+message Director {
+  string firstName = 1;
+  string lastName = 2;
+}
+
+message Id {
+  string value = 1;
+}

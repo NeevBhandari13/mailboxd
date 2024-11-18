@@ -1,0 +1,20 @@
+grpcurl -plaintext localhost:9090 movies.Movie/GetMovies
+grpcurl -plaintext -d '{"value": "1"}' localhost:9090 movies.Movie/GetMovie
+grpcurl -plaintext -d '{
+  "title": "Interstellar",
+  "genre": "SCI_FI",
+  "director": {
+    "firstName": "Christopher",
+    "lastName": "Nolan"
+  }
+}' localhost:9090 movies.Movie/CreateMovie
+grpcurl -plaintext -d '{
+  "id": "1",
+  "title": "Rush Hour",
+  "genre": "ACTION",
+  "director": {
+    "firstName": "Brett",
+    "lastName": "Ratner"
+  }
+}' localhost:9090 movies.Movie/UpdateMovie
+grpcurl -plaintext -d '{"value": "1"}' localhost:9090 movies.Movie/DeleteMovie
